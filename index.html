@@ -7,114 +7,100 @@
 
 <style type="text/css">
 @font-face {
-	font-family: digit;
-	src: url('digital-7_mono.ttf') format("truetype");
+    font-family: digit;
+    src: url('digital-7_mono.ttf') format("truetype");
 }
 </style>
 <link href="css/default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/garden.js"></script>
-<script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/functions.js"></script> <!-- Ensure functions.js has the typewriter effect -->
 
 </head>
 
 <body>
 
 <div id="mainDiv">
-	<div id="content">
-		<div id="code">
-			<span class="comments">/**</span><br />
-			<span class="space"/><span class="comments">*THE CODE OF LOVE</span><br />
-			<span class="space"/><span class="comments">*/</span><br />
-			Hey Girl !<br />
-			Do you remember the day we first met?<br />
-			<span class="comments">// The ET-LAB Friday. </span><br />
-			Since that day a spark begun;<br />
-			<span class="comments">// Your face Your Voice Your Words.</span><br />
-			Your everything got imprinted in my heart;<br />
-			As the time went on;<br />
-			The Bond grew stronger and stronger;<br />
-			Journey from Infatuation to Love;<br />
-			We have traveled a long way together;<br />
-			There have been fights ;<br />
-			<span class="comments">// And I'm sure there will be more.</span><br />
-			But our Bond will always grow back Stronger;<br />
-			<br>
-			<br>
-			All I want to say is:<br />
-			Baby, I will love you forever;<br />
-			<br>
-			<br>
-			Now If you want to hug me you can touch the heart below<br />
-			<br>
-			<span id="heartspan">
-			<a href="image.jpg"><i class="fas fa-heart" id="icon"></i></a>
-			</span>
-		</div>
-		<div id="loveHeart">
-			<canvas id="garden"></canvas>
-			<div id="words">
-				<div id="messages">
-					वर्षा ऋतु FOREVER
-					<div id="elapseClock"></div>
-				</div>
-				<div id="loveu">
-					I LOVE YOU SO MUCH<br/>
-					<div class="signature">- RITVIK</div>
-				</div>
-			</div>
-		</div>
-		<!-- Button to trigger video -->
-		<button id="playVideoButton" onclick="playVideo()">Play Video</button>
-		<!-- Video element hidden initially -->
-		<video id="myVideo" width="100%" height="auto" controls style="display:none;">
-			<source src="kis.mp4" type="video/mp4">
-			Your browser does not support the video tag.
-		</video>
-	</div>
+    <div id="content">
+        <div id="code">
+            <span class="comments">/**</span><br />
+            <span class="space"/><span class="comments">*THE CODE OF LOVE</span><br />
+            <span class="space"/><span class="comments">*/</span><br />
+            Hey Girl !<br />
+            Do you remember the day we first met?<br />
+            <span class="comments">// The ET-LAB Friday. </span><br />
+            Since that day a spark begun;<br />
+            <span class="comments">// Your face Your Voice Your Words.</span><br />
+            Your everything got imprinted in my heart;<br />
+            As the time went on;<br />
+            The Bond grew stronger and stronger;<br />
+            Journey from Infatuation to Love;<br />
+            We have traveled a long way together;<br />
+            There have been fights ;<br />
+            <span class="comments">// And I'm sure there will be more.</span><br />
+            But our Bond will always grow back Stronger;<br />
+            <br>
+            <br>
+            All I want to say is:<br />
+            Baby, I will love you forever;<br />
+            <br>
+            <br>
+            Now If you want to hug me you can touch the heart below<br />
+            <br>
+            <span id="heartspan">
+            <a href="image.jpg"><i class="fas fa-heart" id="icon"></i></a>
+            </span>
+        </div>
+
+        <div id="loveHeart">
+            <canvas id="garden"></canvas> <!-- Heart Animation -->
+            <div id="words">
+                <div id="messages">
+                    वर्षा ऋतु FOREVER
+                    <div id="elapseClock"></div> <!-- Time Elapse -->
+                </div>
+                <div id="loveu">
+                    I LOVE YOU SO MUCH<br/>
+                    <div class="signature">- RITVIK</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
-var offsetX = $("#loveHeart").width() / 2;
-var offsetY = $("#loveHeart").height() / 2 - 55;
-var together = new Date();
-together.setFullYear(2016, 8, 5);
-together.setHours(16);
-together.setMinutes(30);
-together.setSeconds(0);
-together.setMilliseconds(0);
+    var offsetX = $("#loveHeart").width() / 2;
+    var offsetY = $("#loveHeart").height() / 2 - 55;
+    var together = new Date();
+    together.setFullYear(2016, 8, 5);
+    together.setHours(16);
+    together.setMinutes(30);
+    together.setSeconds(0);
+    together.setMilliseconds(0);
 
-if (!document.createElement('canvas').getContext) {
-	var msg = document.createElement("div");
-	msg.id = "errorMsg";
-	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
-	document.body.appendChild(msg);
-	$("#code").css("display", "none")
-	$("#copyright").css("position", "absolute");
-	$("#copyright").css("bottom", "10px");
-	document.execCommand("stop");
-} else {
-	setTimeout(function () {
-		startHeartAnimation();
-	}, 5000);
+    if (!document.createElement('canvas').getContext) {
+        var msg = document.createElement("div");
+        msg.id = "errorMsg";
+        msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+        document.body.appendChild(msg);
+        $("#code").css("display", "none")
+        $("#copyright").css("position", "absolute");
+        $("#copyright").css("bottom", "10px");
+        document.execCommand("stop");
+    } else {
+        // Start animations and time elapse
+        setTimeout(function () {
+            startHeartAnimation(); // Start heart animation after 5 seconds
+        }, 5000);
 
-	timeElapse(together);
-	setInterval(function () {
-		timeElapse(together);
-	}, 500);
+        timeElapse(together); // Display elapsed time
+        setInterval(function () {
+            timeElapse(together);
+        }, 500); // Update the time every 500ms
 
-	adjustCodePosition();
-	$("#code").typewriter();
-}
-
-// Function to play video on button click
-function playVideo() {
-    var video = document.getElementById("myVideo");
-    video.style.display = "block";  // Show the video
-    video.play();  // Play the video
-    document.getElementById("playVideoButton").style.display = "none";  // Hide the button
-}
+        adjustCodePosition(); // Position code properly
+        $("#code").typewriter(); // Start typewriter effect
+    }
 </script>
-
 </body>
 </html>
