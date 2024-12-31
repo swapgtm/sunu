@@ -1,74 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>This one is for my Varchhu</title>
-    <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
-    <style type="text/css">
-        @font-face {
-            font-family: digit;
-            src: url('digital-7_mono.ttf') format("truetype");
-        }
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-        }
-        #videoContainer {
-            text-align: center;
-            margin-top: 50px;
-        }
-        video {
-            max-width: 100%;
-            height: auto;
-        }
-        #messages {
-            font-size: 24px;
-            margin-top: 20px;
-            font-weight: bold;
-            text-align: center;
-        }
-        #loveu {
-            font-size: 20px;
-            margin-top: 10px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .signature {
-            font-size: 18px;
-            margin-top: 10px;
-            font-style: italic;
-            text-align: center;
-        }
-    </style>
+<script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>This one is for my Varchhu</title>
+
+<style type="text/css">
+@font-face {
+	font-family: digit;
+	src: url('digital-7_mono.ttf') format("truetype");
+}
+</style>
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/garden.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+
 </head>
+
 <body>
 
 <div id="mainDiv">
-    <div id="content">
-        <!-- Video Player Section -->
-        <div id="videoContainer">
-            <video width="800" controls autoplay>
-                <source src="kis.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        
-        <!-- Messages Section -->
-        <div id="messages">
-            वर्षा ऋतु FOREVER
-            <div id="elapseClock"></div>
-        </div>
-        
-        <!-- Love Message Section -->
-        <div id="loveu">
-            I LOVE YOU SO MUCH<br/>
-            <div class="signature">- RITVIK</div>
-        </div>
-    </div>
+	<div id="content">
+		<div id="code">
+			<span class="comments">/**</span><br />
+			<span class="space"/><span class="comments">*THE CODE OF LOVE</span><br />
+			<span class="space"/><span class="comments">*/</span><br />
+			Hey Girl !<br />
+			Do you remember the day we first met?<br />
+			<span class="comments">// The ET-LAB Friday. </span><br />
+			Since that day a spark begun;<br />
+			<span class="comments">// Your face Your Voice Your Words.</span><br />
+			Your everything got imprinted in my heart;<br />
+			As the time went on;<br />
+			The Bond grew stronger and stronger;<br />
+			Journey from Infatuation to Love;<br />
+			We have traveled a long way together;<br />
+			There have been fights ;<br />
+			<span class="comments">// And I'm sure there will be more.</span><br />
+			But our Bond will always grow back Stronger;<br />
+			<br>
+			<br>
+			All I want to say is:<br />
+			Baby, I will love you forever;<br />
+			<br>
+			<br>
+			Now If you want to hug me you can touch the heart below<br />
+			<br>
+			<span id="heartspan">
+			<a href="image.jpg"><i class="fas fa-heart" id="icon"></i></a>
+			</span>
+		</div>
+		<div id="loveHeart">
+			<canvas id="garden"></canvas>
+			<div id="words">
+				<div id="messages">
+					वर्षा ऋतु FOREVER
+					<div id="elapseClock"></div>
+				</div>
+				<div id="loveu">
+					I LOVE YOU SO MUCH<br/>
+					<div class="signature">- RITVIK</div>
+				</div>
+			</div>
+		</div>
+		<!-- Button to trigger video -->
+		<button id="playVideoButton" onclick="playVideo()">Play Video</button>
+		<!-- Video element hidden initially -->
+		<video id="myVideo" width="100%" height="auto" controls style="display:none;">
+			<source src="kis.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+	</div>
 </div>
+
+<script type="text/javascript">
+var offsetX = $("#loveHeart").width() / 2;
+var offsetY = $("#loveHeart").height() / 2 - 55;
+var together = new Date();
+together.setFullYear(2016, 8, 5);
+together.setHours(16);
+together.setMinutes(30);
+together.setSeconds(0);
+together.setMilliseconds(0);
+
+if (!document.createElement('canvas').getContext) {
+	var msg = document.createElement("div");
+	msg.id = "errorMsg";
+	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+	document.body.appendChild(msg);
+	$("#code").css("display", "none")
+	$("#copyright").css("position", "absolute");
+	$("#copyright").css("bottom", "10px");
+	document.execCommand("stop");
+} else {
+	setTimeout(function () {
+		startHeartAnimation();
+	}, 5000);
+
+	timeElapse(together);
+	setInterval(function () {
+		timeElapse(together);
+	}, 500);
+
+	adjustCodePosition();
+	$("#code").typewriter();
+}
+
+// Function to play video on button click
+function playVideo() {
+    var video = document.getElementById("myVideo");
+    video.style.display = "block";  // Show the video
+    video.play();  // Play the video
+    document.getElementById("playVideoButton").style.display = "none";  // Hide the button
+}
+</script>
 
 </body>
 </html>
