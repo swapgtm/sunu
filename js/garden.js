@@ -142,6 +142,20 @@ Garden.prototype = {
     clear: function () {
         this.blooms = [];
         this.ctx.clearRect(0, 0, this.element.width, this.element.height);
+    },
+    // Adding glitter effect (click/touch interaction)
+    addGlitterEffect: function (x, y) {
+        var sparkle = document.createElement('div');
+        sparkle.style.position = 'absolute';
+        sparkle.style.left = `${x}px`;
+        sparkle.style.top = `${y}px`;
+        sparkle.style.width = '20px';
+        sparkle.style.height = '20px';
+        sparkle.style.background = 'radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0))';
+        sparkle.style.borderRadius = '50%';
+        sparkle.style.animation = 'sparkle 1s ease-out forwards';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1000);
     }
 };
 
@@ -205,21 +219,6 @@ Garden.randomrgba = function (rmin, rmax, gmin, gmax, bmin, bmax, a) {
     var g = Math.round(Garden.random(gmin, gmax));
     var b = Math.round(Garden.random(bmin, bmax));
     return Garden.rgba(r, g, b, a);
-};
-
-// Adding glitter effect (click/touch interaction)
-Garden.prototype.addGlitterEffect = function(x, y) {
-    var sparkle = document.createElement('div');
-    sparkle.style.position = 'absolute';
-    sparkle.style.left = `${x}px`;
-    sparkle.style.top = `${y}px`;
-    sparkle.style.width = '20px';
-    sparkle.style.height = '20px';
-    sparkle.style.background = 'radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0))';
-    sparkle.style.borderRadius = '50%';
-    sparkle.style.animation = 'sparkle 1s ease-out forwards';
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 1000);
 };
 
 // CSS for sparkle animation
